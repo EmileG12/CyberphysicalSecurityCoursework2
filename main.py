@@ -9,6 +9,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
+from scheduler import compute_schedule_user_energy_demand
+from scheduler import userconstraints
+from matplotlib import pyplot as plt
 
 data = pd.read_csv("support/TrainingData.txt", header=None)
 print("training data : ")
@@ -46,5 +49,12 @@ abnormalframe = testedframe.loc[testedframe['normal'] == 1]
 print("abnormalframe: ")
 abnormalframe = abnormalframe.iloc[:, :-1]
 print(abnormalframe.values.tolist())
+guidelines = abnormalframe.values.tolist()
+schedules = []
+for guideline in guidelines:
+    schedules.append(compute_schedule_user_energy_demand(userconstraints,price_guideline=guideline))
+
+for schedule in schedules:
+    print("Schedule: " + str(schedule))
 
 
