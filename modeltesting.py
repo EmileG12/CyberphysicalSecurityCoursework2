@@ -20,8 +20,7 @@ print(data.head(5))
 X = data.iloc[:, :-1].values
 # # Now let's tell the dataframe which column we want for the target/labels.
 y = data[24]
-#print(X[:5])
-#print(y[:5])
+
 # # Test size specifies how much of the data you want to set aside for the testing set.
 # # Random_state parameter is just a random seed we can use.
 # # You can use it if you'd like to reproduce these specific results.
